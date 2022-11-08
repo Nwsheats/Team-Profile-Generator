@@ -30,17 +30,21 @@ function generateHTML(answers) {
                     <div class="row h-50">
                     ${answers.map((answer)=> {
                         console.log(answer)
-                        switch(answer) {
+                        // return generateManager(answer)
+                        switch({...answer}) {
                             case Manager:
-                            return generateManager(answer)
+                                generateManager()
+                                break;
                             case Engineer:
-                            return generateEngineer(answer)
+                                generateEngineer()
+                                break;
                             case Intern:
-                            return generateIntern(answer)
-                            default:
+                                generateIntern()
+                                break;
+                            default: 
                           }
                     }
-                        )}
+                )}
                     </div>
                 </div>
             </section>
@@ -57,10 +61,10 @@ function generateHTML(answers) {
 
 function generateManager(Manager) {
     return `<div class="col-3 m-3 bg-primary border text-dark">
-    <p>${Manager.name}</p>
-    <p>${Manager.id}</p>
-    <p>${Manager.email}</p>
-    <p>${Manager.officeNumber}</p>
+    <p class="text-dark">${Manager.name}</p>
+    <p class="text-dark">${Manager.id}</p>
+    <p class="text-dark">${Manager.email}</p>
+    <p class="text-dark">${Manager.officeNumber}</p>
     </div>
     `
 }
@@ -68,10 +72,10 @@ function generateManager(Manager) {
 
 function generateEngineer(Engineer) {
     return `<div class="col-3 m-3 bg-primary border text-dark">
-    <p>${Engineer.name}</p>
-    <p>${Engineer.id}</p>
-    <p>${Engineer.email}</p>
-    <p>${Engineer.gitHub}</p>
+    <p class="text-dark">${Engineer.name}</p>
+    <p class="text-dark">${Engineer.id}</p>
+    <p class="text-dark">${Engineer.email}</p>
+    <p class="text-dark">${Engineer.gitHub}</p>
     </div>
     `
 }
@@ -79,10 +83,10 @@ function generateEngineer(Engineer) {
 
 function generateIntern(Intern) {
     return `<div class="col-3 m-3 bg-primary border text-dark">
-    <p>${Intern.name}</p>
-    <p>${Intern.id}</p>
-    <p>${Intern.email}</p>
-    <p>${Intern.school}</p>
+    <p class="text-dark">${Intern.name}</p>
+    <p class="text-dark">${Intern.id}</p>
+    <p class="text-dark">${Intern.email}</p>
+    <p class="text-dark">${Intern.school}</p>
     </div>
     `
 }
@@ -91,15 +95,3 @@ function generateIntern(Intern) {
 //create a for loop to work through all of the data
 
 module.exports = generateHTML;
-
-
-{/* <div class="col-3 m-3 bg-primary border text-dark">
-</div>
-<div class="col-3 m-3 bg-primary border text-dark">
-</div>
-<div class="col-3 m-3 bg-primary border text-dark">
-</div>
-<div class="col-3 m-3 bg-primary border text-dark">
-</div>
-<div class="col-3 m-3 bg-primary border text-dark">
-</div> */}

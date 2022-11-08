@@ -93,11 +93,13 @@ async function init() {
     employeeList.push(newManager);
     otherAnswers.newEmployee.forEach(e => {
         if (e.team === 'Engineer') {
-        const newEngineer = new Engineer(otherAnswers.newEmployee.name, otherAnswers.id, otherAnswers.email, otherAnswers.gitHub);
+        const newEngineer = new Engineer(otherAnswers.name, otherAnswers.id, otherAnswers.email, otherAnswers.gitHub);
         employeeList.push(newEngineer)
+        console.log(employeeList)
         } else {
             const newIntern = new Intern(otherAnswers.name, otherAnswers.id, otherAnswers.email, otherAnswers.school)
             employeeList.push(newIntern)
+            console.log(employeeList)
         }
     })
     fs.writeFile('index.html', generateHTML(employeeList), (err) =>
