@@ -12,6 +12,7 @@ const Intern = require('./lib/intern');
 const inquirer = require('inquirer');
 const fs = require("fs");
 inquirer.registerPrompt("loop", require("inquirer-loop")(inquirer));
+const generateHTML = require('./generateHTML');
 
 const employeeQuestions = [
     {
@@ -94,7 +95,5 @@ async function init() {
     );
     });
 };
-
-function generateHTML()
 
 init();
