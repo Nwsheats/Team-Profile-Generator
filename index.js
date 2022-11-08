@@ -33,7 +33,7 @@ const employeeQuestions = [
     {
         type: 'input',
         message: 'Team Manager Office Number: ',
-        name: 'manager-officenum',
+        name: 'officeNum',
     },
 ]
 
@@ -42,7 +42,7 @@ const otherQuestions = [
     {
         type: 'loop',
         message: 'Would you like to add another employee? ',
-        name: 'new-employee',
+        name: 'newEmployee',
         questions: [
             {
                 type: 'list',
@@ -68,13 +68,13 @@ const otherQuestions = [
             {
                 type: 'input',
                 message: 'Engineer GitHub Username: ',
-                name: 'engineer-github',
+                name: 'gitHub',
                 when: (employee) => employee.team === 'Engineer' 
             },
             {
                 type: 'input',
                 message: 'Intern School: ',
-                name: 'intern-school',
+                name: 'school',
                 when: (employee) => employee.team === 'Intern' 
             },
         ]
@@ -88,21 +88,21 @@ async function init() {
     await inquirer.prompt(employeeQuestions).then(data => {employeeAnswers = data});
     await inquirer.prompt(otherQuestions).then(data => {otherAnswers = data});
     console.log(employeeAnswers, otherAnswers);
-    const newManager = new Manager(employeeAnswers.name, employeeAnswers.id, employeeAnswers.email, employeeAnswers['manager-officeNum']);
+    const newManager = new Manager(employeeAnswers.name, employeeAnswers.id, employeeAnswers.email, employeeAnswers.officeNum);
     const employeeList = []
     employeeList.push(newManager);
-    otherAnswers['new-employee'].forEach(e => {
+    otherAnswers.newEmployee.forEach(e => {
         if (e.team === 'Engineer') {
-        employeeList.push(new Engineer(otherAnswers.name, otherAnswers.id, otherAnswers.email, otherAnswers['engineer-github']))
+        const newEngineer = new Engineer(otherAnswers.newEmployee.name, otherAnswers.id, otherAnswers.email, otherAnswers.gitHub);
+        employeeList.push(newEngineer)
         } else {
-            employeeList.push(new Intern(otherAnswers.name, otherAnswers.id, otherAnswers.email, otherAnswers['intern-school']))
+            const newIntern = new Intern(otherAnswers.name, otherAnswers.id, otherAnswers.email, otherAnswers.school)
+            employeeList.push(newIntern)
         }
     })
     fs.writeFile('index.html', generateHTML(employeeList), (err) =>
         err ? console.error(err) : console.log('Success!')
     )};
-
-
 
 
 init();

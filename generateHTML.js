@@ -25,13 +25,17 @@ function generateHTML(answers) {
                     <div class="row h-50">
                     ${answers.map((answer)=> {
                         console.log(answer)
-                        if (Employee.type === 'Manager')
-                            return generateManager(answer)
-                        if (Employee.type === 'Engineer')
-                            return generateEngineer(answer)
-                        if (Employee.type === 'Intern')
-                            return generateIntern(answer)
-                        
+                        // if (Employee.type === 'Manager') {
+                            return generateManager(answer), generateEngineer(answer), generateIntern(answer)
+                        // // }
+                        // // if (Employee.type === 'Engineer') {
+                        //     return generateEngineer(answer)
+                        // // }
+                        // if (Employee.type === 'Intern') {
+                        //     return generateIntern(answer)
+                        // } else {
+                        //     return
+                        // }
                     }
                         )}
                     </div>
