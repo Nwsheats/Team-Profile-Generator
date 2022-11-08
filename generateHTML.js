@@ -1,4 +1,9 @@
 const Employee = require("./lib/employee");
+const Engineer = require('./lib/engineer');
+const Manager = require('./lib/manager');
+const Intern = require('./lib/intern');
+const inquirer = require('inquirer');
+const fs = require("fs");
 
 function generateHTML(answers) {
     return `<!DOCTYPE html>
@@ -25,17 +30,15 @@ function generateHTML(answers) {
                     <div class="row h-50">
                     ${answers.map((answer)=> {
                         console.log(answer)
-                        // if (Employee.type === 'Manager') {
-                            return generateManager(answer), generateEngineer(answer), generateIntern(answer)
-                        // // }
-                        // // if (Employee.type === 'Engineer') {
-                        //     return generateEngineer(answer)
-                        // // }
-                        // if (Employee.type === 'Intern') {
-                        //     return generateIntern(answer)
-                        // } else {
-                        //     return
-                        // }
+                        switch(answer) {
+                            case Manager:
+                            return generateManager(answer)
+                            case Engineer:
+                            return generateEngineer(answer)
+                            case Intern:
+                            return generateIntern(answer)
+                            default:
+                          }
                     }
                         )}
                     </div>
