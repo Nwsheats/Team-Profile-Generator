@@ -30,9 +30,6 @@ const employeeQuestions = [
         message: 'Email Address: ',
         name: 'email',
     },
-]
-
-const managerQuestions = [
     {
         type: 'input',
         message: 'Team Manager Office Number: ',
@@ -86,14 +83,26 @@ const otherQuestions = [
 
 
 async function init() {
-    await inquirer.prompt(employeeQuestions);
-    await inquirer.prompt(managerQuestions);
-    await inquirer.prompt(otherQuestions);
-    then((answers) => {
-        fs.writeFile('index.html', generateHTML({...answers}), (err) =>
+    let employeeAnswers = {}
+    let otherAnswers = {}
+    await inquirer.prompt(employeeQuestions).then(data => {employeeAnswers = data});
+    await inquirer.prompt(otherQuestions).then(data => {otherAnswers = data});
+    console.log(employeeAnswers, otherAnswers);
+    const newManager = new Manager(employeeAnswers.name, employeeAnswers.id, employeeAnswers.email, employeeAnswers['manager-officeNum']);
+    const employeeList = []
+    employeeList.push(newManager);
+    otherAnswers['new-employee'].forEach(e => {
+        if (e.team === 'Engineer') {
+        employeeList.push(new Engineer(otherAnswers.name, otherAnswers.id, otherAnswers.email, otherAnswers['engineer-github']))
+        } else {
+            employeeList.push(new Intern(otherAnswers.name, otherAnswers.id, otherAnswers.email, otherAnswers['intern-school']))
+        }
+    })
+    fs.writeFile('index.html', generateHTML(employeeList), (err) =>
         err ? console.error(err) : console.log('Success!')
-    );
-    });
-};
+    )};
+
+
+
 
 init();
