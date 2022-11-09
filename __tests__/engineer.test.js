@@ -10,8 +10,8 @@ describe("Engineer class", () => {
             });
     describe("getRole method", () => {
         it("returns a string of a role", () => {
-            const testEmployee = new Employee("Todd", 5, "todd@email.com", "toddno5");
-            const getRoleTest = testEmployee.getRole();
+            const testEngineer = new Engineer("Todd", 5, "todd@email.com", "toddno5");
+            const getRoleTest = testEngineer.getRole();
             expect(getRoleTest).toBe('Engineer');
             });
         });
