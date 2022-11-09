@@ -1,3 +1,6 @@
+// defining consts with requirements to import other elements into this file
+
+
 const Employee = require("./lib/employee");
 const Engineer = require('./lib/engineer');
 const Manager = require('./lib/manager');
@@ -5,6 +8,12 @@ const Intern = require('./lib/intern');
 const inquirer = require('inquirer');
 const fs = require("fs");
 const { join } = require("path");
+
+// generateHTML contains the template literal of the HTML
+
+// there is a map function to receive the answer type and generate different functions below as part of a Switch statement.
+
+// join('') is used because the map function inputs commas between each array it maps through. The join('') stops this minor bug from occurring.
 
 function generateHTML(answers) {
     return `<!DOCTYPE html>
@@ -58,6 +67,7 @@ function generateHTML(answers) {
 }
 
 
+// generateManager returns a div with the Manager's name, the Manager's Employee ID, a link of the Manager's email, and the Manager's office number
 
 
 function generateManager(Manager) {
@@ -71,6 +81,9 @@ function generateManager(Manager) {
 }
 
 
+// generateEngineer returns a div with the Engineer's name, the Engineer's Employee ID, a link of the Engineer's email, and a link of the Engineer's GitHub
+
+
 function generateEngineer(Engineer) {
     return `<div class="col-3 m-3 bg-primary border text-dark">
     <h3 class="text-black">${Engineer.name}</h3>
@@ -81,6 +94,8 @@ function generateEngineer(Engineer) {
     `
 }
 
+
+//generateIntern returns a div with the Intern's name, the Intern's Employee ID, a link of the Intern's email, and the Intern's school.
 
 function generateIntern(Intern) {
     return `<div class="col-3 m-3 bg-primary border text-dark">

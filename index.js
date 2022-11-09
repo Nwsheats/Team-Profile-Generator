@@ -1,9 +1,7 @@
-// different functions (array) for each role, because they have different questions
-// different inquirer prompt for each one
+// defining consts with requirements to import other elements into this file
 
-
-// function for adding each class, building the team
-// need to call functions again later in code, so it has a loop to it
+// inquirer loop is an npm package that adds functionality to inquirer by allowing for a question or series of questions to loop endlessly.
+// inquirer loop: https://www.npmjs.com/package/inquirer-loop
 
 const Employee = require('./lib/employee');
 const Engineer = require('./lib/engineer');
@@ -13,6 +11,9 @@ const inquirer = require('inquirer');
 const fs = require("fs");
 inquirer.registerPrompt("loop", require("inquirer-loop")(inquirer));
 const generateHTML = require('./generateHTML');
+
+
+// employeeQuestions array, which is basically the first four questions that apply to the Team Manager
 
 const employeeQuestions = [
     {
@@ -37,6 +38,11 @@ const employeeQuestions = [
     },
 ]
 
+
+// the otherQuestions array, which contains the loop, which verifies if a new Employee is added
+// After that, there is an Engineer or Intern selection
+// The first three questions are the same
+// The last two questions use WHEN in order to only show up when either Engineer or Intern are selected.
 
 const otherQuestions = [
     {
@@ -82,12 +88,19 @@ const otherQuestions = [
 ];
 
 
+// async function with await on inquirer prompts so that the prompts don't act at the same time.
+
+// creates consts for a New Manager initially and pushes that data to the EmployeeList array.
+
+// uses a ForEach statement to work through the otherAnswers for each newEmployee selected and either creating and pushing a new Engineer or a new Intern
+
+// writeFile sends the employeeList to the generateHTML function on the generateHTML.js document.
+
 async function init() {
     let employeeAnswers = {}
     let otherAnswers = {}
     await inquirer.prompt(employeeQuestions).then(data => {employeeAnswers = data});
     await inquirer.prompt(otherQuestions).then(data => {otherAnswers = data});
-    console.log(employeeAnswers, otherAnswers);
     const newManager = new Manager(employeeAnswers.name, employeeAnswers.id, employeeAnswers.email, 'Manager', employeeAnswers.officeNum);
     const employeeList = []
     employeeList.push(newManager);
@@ -95,11 +108,9 @@ async function init() {
         if (e.team === 'Engineer') {
         const newEngineer = new Engineer(e.name, e.id, e.email, 'Engineer', e.gitHub);
         employeeList.push(newEngineer)
-        console.log(employeeList)
         } else {
             const newIntern = new Intern(e.name, e.id, e.email, 'Intern', e.school)
             employeeList.push(newIntern)
-            console.log(employeeList)
         }
     })
     fs.writeFile('index.html', generateHTML(employeeList), (err) =>
