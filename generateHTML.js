@@ -4,6 +4,7 @@ const Manager = require('./lib/manager');
 const Intern = require('./lib/intern');
 const inquirer = require('inquirer');
 const fs = require("fs");
+const { join } = require("path");
 
 function generateHTML(answers) {
     return `<!DOCTYPE html>
@@ -30,21 +31,21 @@ function generateHTML(answers) {
                     <div class="row h-50">
                     ${answers.map((answer)=> {
                         console.log(answer)
-                        // return generateManager(answer)
-                        switch({...answer}) {
-                            case Manager:
-                                generateManager()
+                        let string = ''
+                        switch(answer.type) {
+                            case 'Manager':
+                                string+= generateManager(answer)
                                 break;
-                            case Engineer:
-                                generateEngineer()
+                            case 'Engineer':
+                                string+= generateEngineer(answer)
                                 break;
-                            case Intern:
-                                generateIntern()
+                            case 'Intern':
+                                string+= generateIntern(answer)
                                 break;
-                            default: 
-                          }
+                            default:
+                          } return string;
                     }
-                )}
+                ).join('')}
                     </div>
                 </div>
             </section>

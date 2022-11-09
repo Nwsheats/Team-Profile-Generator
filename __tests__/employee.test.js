@@ -6,7 +6,7 @@ describe("Employee class", () => {
             const testEmployee = new Employee([
                 { name: "Fred", id: 3, email: "fred@email.com" }
               ]);
-              testEmployee.getName("Fred");
+              testEmployee.getName();
               expect(testEmployee.name).toBe("Fred");
             });
             });
@@ -15,17 +15,15 @@ describe("Employee class", () => {
             const testEmployee = new Employee([
                 { name: "Fred", id: 3, email: "fred@email.com" }
             ]);
-            testEmployee.getId(3);
+            testEmployee.getId();
             expect(testEmployee.id).toBe(3);
             });
             });
     describe("getEmail method", () => {
                 it("returns an email address", () => {
-                    const testEmployee = new Employee([
-                        { name: "Fred", id: 3, email: "fred@email.com" }
-                    ]);
-                    testEmployee.getEmail("fred@email.com");
-                    expect(testEmployee.id).toBe("fred@email.com");
+                    const testEmployee = new Employee("Fred", 3, "fred@email.com");
+                    const getEmailTest = testEmployee.getEmail();
+                    expect(getEmailTest).toBe("fred@email.com");
           });
           });
     describe("getRole method", () => {
@@ -33,8 +31,8 @@ describe("Employee class", () => {
             const testEmployee = new Employee([
                 { name: "Fred", id: 3, email: "fred@email.com" }
             ]);
-            testEmployee.getRole(Employee);
-            expect(testEmployee).toReturn('Employee');
+            const getRoleTest = testEmployee.getRole();
+            expect(getRoleTest).toBe('Employee');
         });
     });
 });

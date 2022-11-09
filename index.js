@@ -88,16 +88,16 @@ async function init() {
     await inquirer.prompt(employeeQuestions).then(data => {employeeAnswers = data});
     await inquirer.prompt(otherQuestions).then(data => {otherAnswers = data});
     console.log(employeeAnswers, otherAnswers);
-    const newManager = new Manager(employeeAnswers.name, employeeAnswers.id, employeeAnswers.email, employeeAnswers.officeNum);
+    const newManager = new Manager(employeeAnswers.name, employeeAnswers.id, employeeAnswers.email, 'Manager', employeeAnswers.officeNum);
     const employeeList = []
     employeeList.push(newManager);
     otherAnswers.newEmployee.forEach(e => {
         if (e.team === 'Engineer') {
-        const newEngineer = new Engineer(otherAnswers.name, otherAnswers.id, otherAnswers.email, otherAnswers.gitHub);
+        const newEngineer = new Engineer(e.name, e.id, e.email, 'Engineer', e.gitHub);
         employeeList.push(newEngineer)
         console.log(employeeList)
         } else {
-            const newIntern = new Intern(otherAnswers.name, otherAnswers.id, otherAnswers.email, otherAnswers.school)
+            const newIntern = new Intern(e.name, e.id, e.email, 'Intern', e.school)
             employeeList.push(newIntern)
             console.log(employeeList)
         }
