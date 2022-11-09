@@ -62,10 +62,10 @@ function generateHTML(answers) {
 
 function generateManager(Manager) {
     return `<div class="col-3 m-3 bg-primary border text-dark">
-    <p class="text-black">${Manager.name}</p>
-    <p class="text-black">${Manager.id}</p>
-    <p class="text-black">${Manager.email}</p>
-    <p class="text-black">${Manager.officeNumber}</p>
+    <h3 class="text-black">Name: ${Manager.name}</h2>
+    <p class="text-black">Employee ID: ${Manager.id}</p>
+    <a class="text-black" href="mailto:${Manager.email}">Email: ${Manager.email}</a>
+    <p class="text-black">Office Number: ${Manager.officeNumber}</p>
     </div>
     `
 }
@@ -73,10 +73,10 @@ function generateManager(Manager) {
 
 function generateEngineer(Engineer) {
     return `<div class="col-3 m-3 bg-primary border text-dark">
-    <p class="text-black">${Engineer.name}</p>
-    <p class="text-black">${Engineer.id}</p>
-    <p class="text-black">${Engineer.email}</p>
-    <p class="text-black">${Engineer.gitHub}</p>
+    <h3 class="text-black">Name: ${Engineer.name}</p>
+    <p class="text-black">Employee ID: ${Engineer.id}</p>
+    <a class="text-black" href="mailto:${Engineer.email}">Email: ${Engineer.email}</a>
+    <a class="text-black" href="https://github.com/${Engineer.gitHub}/>GitHub: ${Engineer.gitHub}</a>
     </div>
     `
 }
@@ -84,15 +84,13 @@ function generateEngineer(Engineer) {
 
 function generateIntern(Intern) {
     return `<div class="col-3 m-3 bg-primary border text-dark">
-    <p class="text-black">${Intern.name}</p>
-    <p class="text-black">${Intern.id}</p>
-    <p class="text-black">${Intern.email}</p>
-    <p class="text-black">${Intern.school}</p>
+    <h3 class="text-black">Name: ${Intern.name}</p>
+    <p class="text-black">Employee ID: ${Intern.id}</p>
+    <a class="text-black" href="mailto:${Intern.email}">Email: ${Intern.email}</a>
+    <p class="text-black">School: ${Intern.school}</p>
     </div>
     `
 }
 
-
-//create a for loop to work through all of the data
 
 module.exports = generateHTML;
