@@ -5,7 +5,7 @@ describe("Employee class", () => {
         it("returns a name", () => {
             const testEmployee = new Employee("Fred", 3, "fred@email.com");
             const getNameTest = testEmployee.getName();
-              expect(getNameTest).toBe("Fred");
+            expect(getNameTest).toBe("Fred");
             });
             });
     describe("getID method", () => {
